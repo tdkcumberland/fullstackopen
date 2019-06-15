@@ -3,40 +3,55 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 const App = () => {
-  const name = 'Peter'
-  const age = 10
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
+
   return (
     <>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={26 + 10}/>
-      <Hello name={name} age={age}  />
-      <Footer />
+      <Header course={course} />
+      <Content part={part1} count={exercises1} />
+      <Content part={part2} count={exercises2} />
+      <Content part={part3} count={exercises3} />
+      <Total exercises={[exercises1, exercises2,exercises3]} />
     </>
   )
 }
 
-const Hello = (props) => {
+const Header = (props) => {
   return (
-    <div>
-      <p>
-      Hello {props.name}, you are {props.age} years old
-      </p>
-    </div>
+    <h1>{props.course}</h1>
   )
 }
 
-const Footer = () => {
+const Content = (props) => {
   return (
-    <div>
-      greeting app created by 
-      <a href="https://github.com/tdkcumberland">tdkcumberland</a>
-    </div>
+    <Parts part={props.part} count={props.count}/>
   )
 }
-  
-  ReactDOM.render(<App />, document.getElementById('root'))
-  
-ReactDOM.render(<App />, document.getElementById('root'));
+
+const Parts = (props) =>{
+  return(
+    <p>{props.part} {props.count}</p>
+  )
+}
+
+const Total = (props) => {
+  var total = 0;
+  for (var i = 0; i < props.exercises.length; i+=1) {
+    total += (props.exercises[i]);
+  }
+  return (
+    <p>Number of exercises {total}</p>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
