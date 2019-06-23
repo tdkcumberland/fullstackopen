@@ -14,9 +14,7 @@ const App = () => {
   return (
     <>
       <Header course={course} />
-      <Content part={part1} count={exercises1} />
-      <Content part={part2} count={exercises2} />
-      <Content part={part3} count={exercises3} />
+      <Content2 part={[part1, part2,part3]} count={[exercises1, exercises2,exercises3]} />
       <Total exercises={[exercises1, exercises2,exercises3]} />
     </>
   )
@@ -31,6 +29,19 @@ const Header = (props) => {
 const Content = (props) => {
   return (
     <Parts part={props.part} count={props.count}/>
+  )
+}
+
+const Content2 = (props) => {
+  const testPart = [];
+  for (var i = 0; i < props.part.length; i+=1){
+    console.log(i)
+    console.log(props.part[i])
+    testPart.push( <Parts part={props.part[i]} count={props.count[i]}/>)
+  }
+ 
+  return (
+    testPart
   )
 }
 
