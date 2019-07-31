@@ -3,58 +3,62 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <>
       <Header course={course} />
-      <Content2 part={[part1, part2,part3]} count={[exercises1, exercises2,exercises3]} />
-      <Total exercises={[exercises1, exercises2,exercises3]} />
+      <Content2 part={course} />
+      <Total exercises={course} />
     </>
   )
 }
 
 const Header = (props) => {
+  // console.log(props.course.name)
   return (
-    <h1>{props.course}</h1>
-  )
-}
-
-const Content = (props) => {
-  return (
-    <Parts part={props.part} count={props.count}/>
+    <h1>{props.course.name}</h1>
   )
 }
 
 const Content2 = (props) => {
   const testPart = [];
-  for (var i = 0; i < props.part.length; i+=1){
-    console.log(i)
-    console.log(props.part[i])
-    testPart.push( <Parts part={props.part[i]} count={props.count[i]}/>)
+  for (var i = 0; i < props.part.parts.length; i+=1){
+    // console.log(i)
+    // console.log(props.part.parts[i])
+    console.log(props.part.parts[i].name.toString())
+    testPart.push(<p>{props.part.parts[i].name} {props.part.parts[i].exercises}</p> )
   }
+
+  const listItems = props.part.parts.map(both =>
+  <p key={both.name.toString()}>{both.name} {both.exercises}</p>
+  );
  
   return (
-    testPart
-  )
-}
-
-const Parts = (props) =>{
-  return(
-    <p>{props.part} {props.count}</p>
+    listItems
   )
 }
 
 const Total = (props) => {
   var total = 0;
-  for (var i = 0; i < props.exercises.length; i+=1) {
-    total += (props.exercises[i]);
+  for (var i = 0; i < props.exercises.parts.length; i+=1) {
+    total += (props.exercises.parts[i].exercises);
   }
   return (
     <p>Number of exercises {total}</p>
