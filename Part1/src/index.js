@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -64,8 +64,102 @@ const Total = (props) => {
     <p>Number of exercises {total}</p>
   )
 }
+const Display = ({counter}) => <div>{counter}</div>
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const Button = ({onClick, text}) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
+
+
+
+const History = (props) => {
+  if (props.allClicks.length === 0){
+    return (
+      <div>
+        the app is used by pressing the buttons
+      </div>
+    )
+  }
+  return (
+    <div>
+      button press history: {props.allClicks.join(' ')}
+    </div>
+  )
+}
+
+const App1 = (props) => {
+  const [ counter, setCounter ] = useState(0)
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const setToValue = (value) => setCounter(value)
+  const setLeftToValue = (value) => setLeft(value)
+  const setRightToValue = (value) => setRight(value)
+  const [allClicks, setAll] = useState([])
+  const [clicks, setClicks] = useState(
+    {left: 0, right: 0}  
+    )
+  
+    const handleLeftClick = () => {
+      // const newClicks ={
+      //   ...clicks,
+      //   left: clicks.left + 1
+      // }
+      // setClicks(newClicks)
+      setAll(allClicks.concat('L'))
+      setLeft(left + 1)
+    }
+    
+    const handleRightClick = () => {
+      // const newClicks = {
+      //   ...clicks,
+      //   right: clicks.right + 1
+      // }
+      // setClicks(newClicks)
+      setAll(allClicks.concat('R'))
+      setRight(right + 1)
+    }
+
+
+  return (
+    <>
+    <div>
+      <Display counter={counter}/>
+      <Button onClick={() => setToValue(counter + 1)}
+        text = 'plus'
+      />
+      <Button onClick={() => setToValue(counter - 1)}
+        text = 'minus'
+      />
+      <Button onClick={() => setToValue(0)}
+        text = 'zero'
+      />
+      <Button onClick={() => setToValue(counter * 3)}
+        text = 'x2'
+      />
+      <Button onClick={()=>setToValue(counter / 2)} 
+        text = '/2'
+      />
+    </div>
+    
+    <div>
+      <Display counter={left}/>
+      <Display counter={right}/>
+      <History allClicks={allClicks}/>
+      <Button onClick={handleLeftClick} text = 'left'/>
+      <Button onClick={handleRightClick} text = 'right'/>
+    </div>
+    </>
+  )
+}
+
+ReactDOM.render(
+  <App1 />, 
+  document.getElementById('root')
+)
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
