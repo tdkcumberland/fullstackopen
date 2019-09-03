@@ -55,6 +55,18 @@ const StatisticTable = ({good, bad, neutral, clickCount}) => {
   )
 }
 
+const HighestVote = ({vote,anecdotes}) =>{
+  console.log(Math.max(...vote))
+  console.log(anecdotes[Math.max(...vote)])
+  return(
+    <>
+      <div>
+        <p>{anecdotes[Math.max(...vote)]}</p>
+        with {Math.max(...vote)} votes
+      </div>
+    </>
+  )
+}
 
 const anecdotes = [
   'If it hurts, do it more often',
@@ -71,6 +83,8 @@ const App1 = (props) => {
   const [bad, setBad] = useState(0)
   const [clickCount, setCount] = useState(0)
   const [selected, setSelected] = useState(0)
+  // const [vote, setVote] = useState({0 : 1, 1 : 2, 2 : 3, 3: 4,4 : 5,5 : 6})
+  const [vote, setVote] = useState([0,1,2,3,4,5])
 
   const onGoodClick = () => {setGood(good + 1); setCount(clickCount + 1)}
   const onNeutralClick = () => {setNeutral(neutral + 1); setCount(clickCount + 1)}
@@ -81,7 +95,11 @@ const App1 = (props) => {
   //   setNeutral(0)
   // }
   const onSelect = () => {
-    setSelected(Math.floor((Math.random() * 5) + 0))
+    setSelected(Math.floor((Math.random() * 6) + 0))
+  }
+  const onVoteClick = () => {
+    setVote({...vote, vote:vote[selected]+=1})
+    // console.log(vote)
   }
 
   return (
@@ -90,8 +108,16 @@ const App1 = (props) => {
     <div>
       {props.anecdotes[selected]} 
     </div>
-    <Button onClick={onSelect} text='vote'/>
+
+    <div>
+        has {vote[selected]} votes
+    </div>
+    <Button onClick={onVoteClick} text='vote'/>
     <Button onClick={onSelect} text='next anecdote'/>
+    <h1>
+      Anecdote with the most votes
+    </h1>
+    <HighestVote vote={vote} anecdotes={anecdotes}/>
     
     <h1>give feedback</h1>
     <div>
