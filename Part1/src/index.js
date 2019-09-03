@@ -55,14 +55,21 @@ const StatisticTable = ({good, bad, neutral, clickCount}) => {
   )
 }
 
-const HighestVote = ({vote,anecdotes}) =>{
-  console.log(Math.max(...vote))
-  console.log(anecdotes[Math.max(...vote)])
+const HighestVote = ({vote,clickCount,anecdotes}) =>{
+
+  let result = [Object.values(vote)].flat()
+  console.log(result.length > anecdotes.length, result, result.flat())
+  if (!(result.length === anecdotes.length)){
+    result.pop()
+  }
+  console.log(result)
+  let maxIndex = result.indexOf(Math.max(...result))
+  console.log(maxIndex)
   return(
     <>
       <div>
-        <p>{anecdotes[Math.max(...vote)]}</p>
-        with {Math.max(...vote)} votes
+        <p>{anecdotes[maxIndex]}</p>
+        with {vote[maxIndex]} votes
       </div>
     </>
   )
@@ -84,7 +91,7 @@ const App1 = (props) => {
   const [clickCount, setCount] = useState(0)
   const [selected, setSelected] = useState(0)
   // const [vote, setVote] = useState({0 : 1, 1 : 2, 2 : 3, 3: 4,4 : 5,5 : 6})
-  const [vote, setVote] = useState([0,1,2,3,4,5])
+  const [vote, setVote] = useState([0,1,12,3,4,5])
 
   const onGoodClick = () => {setGood(good + 1); setCount(clickCount + 1)}
   const onNeutralClick = () => {setNeutral(neutral + 1); setCount(clickCount + 1)}
@@ -95,10 +102,10 @@ const App1 = (props) => {
   //   setNeutral(0)
   // }
   const onSelect = () => {
-    setSelected(Math.floor((Math.random() * 6) + 0))
+    setSelected(Math.floor((Math.random() * 6) + 0)); setCount(clickCount + 1)
   }
   const onVoteClick = () => {
-    setVote({...vote, vote:vote[selected]+=1})
+    setVote({...vote, 7:vote[selected]+=1}); setCount(clickCount + 1)
     // console.log(vote)
   }
 
@@ -117,7 +124,7 @@ const App1 = (props) => {
     <h1>
       Anecdote with the most votes
     </h1>
-    <HighestVote vote={vote} anecdotes={anecdotes}/>
+    <HighestVote vote={vote} anecdotes={anecdotes} clickCount={clickCount}/>
     
     <h1>give feedback</h1>
     <div>
