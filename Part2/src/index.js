@@ -6,8 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import AppNotes from './AppNotes';
 import AppPhoneBook from './AppPhoneBook'
 import axios from 'axios'
-
-
+import Country from './Country'
 
 const courses = 
 [
@@ -78,13 +77,12 @@ const notes_OLD = [
 
 // ReactDOM.render(<App course={courses}/>, document.getElementById('root'));
 
-const promise = axios.get('http://localhost:3001/notes').then( response => {
-  console.log(response)
-  const notes = response.data
-  console.log(notes)
-  ReactDOM.render(<AppNotes notes={notes} />, document.getElementById('root'));
+const promise = axios.get('https://restcountries.eu/rest/v2/all').then( response => {
+  // console.log(response)
+  const country = response.data
+  console.log(country)
+  ReactDOM.render(<Country country={country} />, document.getElementById('root'));
 })
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
