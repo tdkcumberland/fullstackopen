@@ -23,7 +23,7 @@ const Country = (props) => {
         const searchResult = country.filter(eachCountry => eachCountry.name.toUpperCase().includes(event.target.value.toUpperCase()))
         setCountry(searchResult)
 
-        console.log(searchResult)
+        // console.log(searchResult)
     }
 
     const getSearchResultLength = () => {
