@@ -6,15 +6,7 @@ import PersonForm from './PersonForm'
 import Filter from './Filter'
 
 const AppPhoneBook = ({person}) => {
-    const [persons, setPersons] = useState(
-        [ 
-            {name: 'Timothy Cumberland', number: 227475086},
-            {name : 'Sherlock Holmes', number: 221236575},
-            { name: 'Arto Hellas', number: 125335466 },
-            { name: 'Ada Lovelace', number: 39445323523 },
-            { name: 'Dan Abramov', number: 1243234345 },
-            { name: 'Mary Poppendieck', number: 39236423122 }
-        ])
+    const [persons, setPersons] = useState(person)
 
     const uuidv4 = require('uuid/v4');
     const [newName, setNewName] = useState('enter a name...')

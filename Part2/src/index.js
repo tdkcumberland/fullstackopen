@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './courseApp/App';
 import * as serviceWorker from './serviceWorker';
-import AppNotes from './AppNotes';
-import AppPhoneBook from './AppPhoneBook'
+import AppNotes from './noteApp/AppNotes';
+import AppPhoneBook from './phoneBookApp/AppPhoneBook'
 import axios from 'axios'
-import Country from './Country'
+import Country from './countryApp/Country'
 
 const courses = 
 [
@@ -75,14 +75,26 @@ const notes_OLD = [
   }
 ]
 
+
+// course App 
 // ReactDOM.render(<App course={courses}/>, document.getElementById('root'));
 
-const promise = axios.get('https://restcountries.eu/rest/v2/all').then( response => {
-  // console.log(response)
-  const country = response.data
-  console.log(country)
-  ReactDOM.render(<Country country={country} />, document.getElementById('root'));
+
+// coutry API
+// const promise = axios.get('https://restcountries.eu/rest/v2/all').then( response => {
+//   // console.log(response)
+//   const country = response.data
+//   console.log(country)
+//   ReactDOM.render(<Country country={country} />, document.getElementById('root'));
+// })
+
+
+//phone book
+const promise = axios.get('http://localhost:3001/phone').then(response =>{
+  const person = response.data
+  ReactDOM.render(<AppPhoneBook  person={person}/>, document.getElementById('root'));
 })
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

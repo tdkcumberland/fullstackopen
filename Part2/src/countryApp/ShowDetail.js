@@ -39,6 +39,7 @@ const ShowDetail = ({languages, capital,population, flag}) => {
             <h5>
                 Random Chuck Norris' Quote :)
             </h5>
+            
             <div>
                 {chuckQuote}
             </div>
