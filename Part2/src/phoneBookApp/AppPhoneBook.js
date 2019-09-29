@@ -5,6 +5,7 @@ import Person from './Person'
 import PersonForm from './PersonForm'
 import Filter from './Filter'
 import phoneService from './services/apiMethod'
+import Notification from './Notification'
 
 const AppPhoneBook = () => {
 
@@ -13,6 +14,7 @@ const AppPhoneBook = () => {
     const [newName, setNewName] = useState('enter a name...')
     const [newNumber, setNewNumber] = useState('enter a number...')
     const [nameToSearch, setNameToSearch] = useState('')
+    const [errorMessage, setErrorMessage] = useState('some error happened...')
     const nameToShow = persons.filter(person => person.name.toLowerCase().includes(nameToSearch.toLowerCase()))
 
     useEffect(()=>{
@@ -111,6 +113,7 @@ const AppPhoneBook = () => {
 
     return (
         <div>
+            <Notification message={errorMessage} />
             <Filter nameToSearch={nameToSearch} handleNameSearchChange={handleNameSearchChange} test={test}/>
             <PersonForm newName={newName} handleNameChange={handleNameChange} clearNameInput={clearNameInput} 
             newNumber={newNumber} handleNumberChange={handleNumberChange} clearNumberInput={clearNumberInput} addName={addName}/>
