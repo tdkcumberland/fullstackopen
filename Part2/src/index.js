@@ -88,13 +88,8 @@ const notes_OLD = [
 //   ReactDOM.render(<Country country={country} />, document.getElementById('root'));
 // })
 
-
 //phone book
-const promise = axios.get('http://localhost:3001/phone').then(response =>{
-  const person = response.data
-  ReactDOM.render(<AppPhoneBook  person={person}/>, document.getElementById('root'));
-})
-
+ReactDOM.render(<AppPhoneBook />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

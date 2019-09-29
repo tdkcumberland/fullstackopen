@@ -1,35 +1,24 @@
 {
-	"phone":
-	[
-		{
-		"id" : "Timothy Cumberland",
-		"name" : "Timothy Cumberland",
-		"number" : 227475086
-		},
-			{
-		"id" : "Sherlock Holmes",
-		"name" : "Sherlock Holmes",
-		"number" : 221236575
-		},
-			{
-		"id" : "Arto Hellas",
-		"name" : "Arto Hellas",
-		"number" : 125335466
-		},
-			{
-		"id" : "Ada Lovelace",
-		"name" : "Ada Lovelace",
-		"number" : 39445323523
-		},
-		{
-		"id" : "Dan Abramov",
-		"name" : "Dan Abramov",
-		"number" : 1243234345
-		},
-			{
-		"id" : "Mary Poppendieck",
-		"name" : "Mary Poppendieck",
-		"number" : 39236423122
-		}
-	]
+  "person": [
+    {
+      "id": "2a5646c2-a23e-4bf4-a110-607f569ac177",
+      "name": "TIMOTHY",
+      "number": "125151"
+    },
+    {
+      "id": "f32e691d-0be2-4985-b9f1-be03260c9b54",
+      "name": "ROARK",
+      "number": "65859"
+    },
+    {
+      "id": "2e5ec43e-3559-4f2b-951f-80ccfef06f6f",
+      "name": "CUMBERLAND",
+      "number": "212121"
+    },
+    {
+      "id": "b85dee64-969c-4cd7-a0f9-f622062043df",
+      "name": "HOWARD",
+      "number": "9909099"
+    }
+  ]
 }
