@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import phoneService from './services/apiMethod'
 
 const Numbers = ({person,number,id,refresh}) => {
@@ -9,15 +9,19 @@ const Numbers = ({person,number,id,refresh}) => {
             number : number,
             id : id,
         }
-        console.log(nameToDelete)
+        // console.log(nameToDelete)
         
         phoneService
         .deleteName(id,nameToDelete).then(response => {
-            console.log(response)
+            // console.log(response)
             refresh({person})
-        }
-            
-        )
+        }).catch(error => {
+            if (error.response.status > 400){
+            console.log(error.response.status)
+            const statusCode = error.response.status
+            refresh({person , statusCode})
+            }
+        })
     }
 
     return (
