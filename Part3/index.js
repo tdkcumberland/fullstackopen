@@ -1,7 +1,17 @@
 const express = require('express')
-const app = express()
+let morgan = require('morgan')
 const bodyParser = require('body-parser')
 
+morgan.token('request-info', function getName (req){
+  return [req.body.name, req.body.number]
+})
+// morgan.token('number', function getNumber (req) {
+//   return req.body.number
+// })
+
+const app = express()
+
+app.use(morgan(':url :method :response-time ms :request-info'))
 app.use(bodyParser.json())
 
 let person = [
@@ -70,33 +80,34 @@ app.get('/person', (req, res) => {
   res.json(person)
 })
 
-app.get('/person/:name', (request, response)=>{
-  const name = request.params.name
-  const personOut = person.find(eachPerson => eachPerson.name ===name)
+app.get('/person/:name', (req, res)=>{
+  const name = req.params.name
+  const personOut = person.find(res => eachPerson.name ===name)
 
   if (personOut) {
-    response.json(personOut)
+    res.json(personOut)
   } else {
-    response.status(404).end()
+    res.status(404).end()
   }
 })
 
-app.delete('/person/:name', (request, response) =>{
-  const name = request.params.name
-  const newPersons = person.filter(eachPerons => eachPerons.name !==name)
-  response.json(newPersons)
-  response.status(204).end()
+app.delete('/person/:name', (req, res) =>{
+  const name = req.params.name
+  const newPersons = person.filter(res => eachPerons.name !==name)
+  res.json(newPersons)
+  res.status(204).end()
 })
 
-app.post('/person', (request, response)=>{
-  const body = request.body
-  console.log(body.name, body.number)
+app.post('/person', (req, res)=>{
+  const body = req.body
+
+  // console.log(body.name, body.number)
   if (!body.name || ! body.number) {
-    return response.status(400).json({
+    return res.status(400).json({
       error : 'name or number is missing'
     })
   } else if (person.filter(eachPerson => eachPerson.name === body.name).length >0){
-    return response.status(401).json({
+    return res.status(401).json({
       error : 'name must be unique'
     })
   }
