@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "engines": {
+	"node" : "10.16.0"
+  },
   "scripts": {
     "watch": "nodemon index.js",
     "start": "node index.js",
@@ -15,9 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+	"cors": "2.8.5"
   },
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.3",
+	"cors": "2.8.5"
   }
 }
