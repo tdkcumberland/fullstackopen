@@ -1,2 +1,5 @@
 node_modules
 .env
+heroku-deployment/node_modules
+heroku-deployment/.env
+heroku-deployment/requests
