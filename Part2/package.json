@@ -31,5 +31,8 @@
   },
   "devDependencies": {
     "json-server": "^0.15.1"
+  },
+  "jshintConfig":{
+    "esversion": 6 
   }
 }

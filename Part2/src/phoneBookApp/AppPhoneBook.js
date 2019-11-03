@@ -50,11 +50,11 @@ const AppPhoneBook = () => {
 
     const row = () => nameToShow.map(person => 
         <Numbers
-            key = {uuidv4()}
-            person = {person.name}
-            number = {person.number}
-            id = {person.id}
-            refresh  = {refresh}
+            key = {uuidv4()};
+            person = {person.name};
+            number = {person.number};
+            id = {person.id};
+            refresh  = {refresh};
         />
     )
 
